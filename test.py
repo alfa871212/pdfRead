@@ -69,19 +69,24 @@ missing = [i for i,x in enumerate(prob_num_lis) if x==0]
 
 for i in missing:
     print(f"Missing Prob num. {i+1}, please check it manually!!!")
-    prob_lis = prob_lis[:i]+[0]+prob_lis[i:]
+    prob_lis = prob_lis[:i]+['0']+prob_lis[i:]
     prob_lis.pop()
 missing_prob = [i for i,x in enumerate(prob_lis) if x==0]
 for i in missing_prob:
     print(f"Missing Prob. {i+1}, please check it manually!!!")
 
 
-
-for i in range(len(prob_lis)):
-    print(f"Prob{i+1}")
-    print(prob_lis[i])
-    print('-'*50)
+chapter = ['酸鹼','氧化還原','沉澱','氣體','平衡','反應速率',
+'反應熱','電化學','無機','有機','週期表','電子軌域','原子構造','溶液','基本化學','未分類']
 
 
+acid_keyword = ['酸鹼','H+','OH-','pH','pOH','Ka','Kw','酸性','中性','鹼性','離子積','滴定','共軛酸鹼',
+'弱鹼','弱酸','強酸','強鹼']
 
-    
+potential=[]
+for i in prob_lis:
+    for j in acid_keyword:
+        if j in i:
+            potential.append(prob_lis.index(i)+1)
+tmp = set(potential)
+print(sorted(list(tmp)))
