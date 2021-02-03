@@ -23,7 +23,7 @@ prob_num=0
 #print(len(pdf.pages))
 for pages_num in range(len(pdf.pages)):
     text = pdf.pages[pages_num].extract_text()
-    print(f"Dealing with page{pages_num+1}...")
+    #print(f"Dealing with page{pages_num+1}...")
     page_lim_lis.append(len(text))
     page_lim = len(text)
     pos = 0
@@ -54,7 +54,7 @@ for pages_num in range(len(pdf.pages)):
             subtext = text[pos+2:]
         else:
             pos = len(text)
-    print(f"For page{pages_num+1}, pos={pos_lis}")
+    #print(f"For page{pages_num+1}, pos={pos_lis}")
     for i in range(len(pos_lis)):
         if i != (len(pos_lis)-1):
             problem = text[pos_lis[i]:pos_lis[i+1]]
@@ -81,12 +81,34 @@ chapter = ['酸鹼','氧化還原','沉澱','氣體','平衡','反應速率',
 
 
 acid_keyword = ['酸鹼','H+','OH-','pH','pOH','Ka','Kw','酸性','中性','鹼性','離子積','滴定','共軛酸鹼',
-'弱鹼','弱酸','強酸','強鹼']
+'弱鹼','弱酸','強酸','強鹼','氫離子','氫氧根離子']
+
+oxred_keyword = ['氧化','還原']
 
 potential=[]
+potential2=[]
 for i in prob_lis:
     for j in acid_keyword:
         if j in i:
             potential.append(prob_lis.index(i)+1)
+    for k in oxred_keyword:
+        if k in i:
+            potential2.append(prob_lis.index(i)+1)
 tmp = set(potential)
+tmp2 = set(potential2)
+
+acid_prob = sorted(list(tmp))
+oxred_prob = sorted(list(tmp2))
 print(sorted(list(tmp)))
+print(sorted(list(tmp2)))
+
+import docx
+doc_acid = docx.Document()
+doc_oxred = docx.Document()
+for i in acid_prob:
+    doc_acid.add_paragraph(prob_lis[i-1])
+for j in oxred_prob:
+    doc_oxred.add_paragraph(prob_lis[j-1])
+
+doc_acid.save('./acid/tmp.docx')
+doc_oxred.save('./oxred/tmp.docx')
