@@ -1,6 +1,6 @@
 import pdfplumber
 import pandas as pd
-pdffile = './test.pdf'
+pdffile = './data/4.pdf'
 pdf = pdfplumber.open(pdffile)
 
 
@@ -9,7 +9,7 @@ num_lis=[0]
 prob_num_lis=[]
 prob_lis=[]
 #exp_num = input("Expected num of prob: ")
-exp_num=70
+exp_num=80
 
 for i in range(0,int(exp_num)):
     prob_num_lis.append(0)
