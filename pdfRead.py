@@ -3,7 +3,7 @@ import pandas as pd
 import myArg
 import chapter
 #TODO argparse for args supported
-#1. GOAL: python new.py --file data.pdf --verbose --manual 
+#1. GOAL: python pdfRead.py --file data.pdf --verbose --manual 
 arg = myArg.process_command()
 debug = arg.verbose
 pdffile = arg.file
@@ -17,6 +17,8 @@ prob=[]
 page_lis=[]
 while sw:
     ind = str(ctrl)+'. '
+    alt_ind = '\n'+str(ctrl)+'.'
+    alt_ind2 = str(ctrl)+'.'
     text = pdf.pages[page_num-1].extract_text()
     
     #problem in text
@@ -25,13 +27,19 @@ while sw:
             print(ind,f"in page{page_num}")
         page_lis.append(text.find(ind))
         ctrl+=1
+    elif alt_ind in text:
+        if debug:
+             print(alt_ind,f"in page{page_num}")
+        page_lis.append(text.find(ind))
+        ctrl+=1
+    elif alt_ind2 in text:
+        if debug:
+             print(alt_ind2,f"in page{page_num}")
+        page_lis.append(text.find(ind))
+        ctrl+=1
     else:
         page_num+=1
         page_lis.append(len(text))
-        """
-        if page_lis[0]!=0:
-            page_lis.insert(0,0)
-        """
         prob.append(page_lis)
         page_lis=[]
     
