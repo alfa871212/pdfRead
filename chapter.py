@@ -14,7 +14,7 @@ def cmp_keyword(probContent, debug=False):
     orbital_keyword=['軌域','混成','共價鍵','價鍵理論','金屬鍵','離子鍵','氫鍵','凡得瓦力','鍵角','鍵長','鍵能','極性','分子形狀','共振','單鍵','雙鍵','參鍵']
     atom_keyword=['原子','質子','電子','中子','原子序','質量數']
     solution_keyword=['溶液','拉午耳','蒸氣壓','理想溶液']
-    basic_keyword=['係數平衡','方程式係數']
+    basic_keyword=['係數平衡','方程式係數','係數和','係數']
     concentration_keyword=['溶解度','濃度','飽和','不飽和','過飽和','濃度']
 
     keyword_prob = []
@@ -75,3 +75,10 @@ def cmp_keyword(probContent, debug=False):
 
     not_matched=sorted(list(entire.difference(tmp)))
     print("No match for given keywords: ",not_matched)
+
+def IJSO_keyword():
+    #TODO
+    return
+def physics_keyword():
+    #TODO
+    return
